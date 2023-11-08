@@ -1,20 +1,24 @@
-import { MainButton, useShowPopup } from '@vkruglikov/react-telegram-web-app';
+import { useThemeParams, useWebApp } from '@vkruglikov/react-telegram-web-app';
 import { FC } from 'react';
 
 interface HomeProps {}
 
 const Home: FC<HomeProps> = () => {
-  const showPopup = useShowPopup();
+  const [, themeParams] = useThemeParams();
+  const WebApp = useWebApp();
 
-  const handleClick = () =>
-    showPopup({
-      message: 'Hello, I am popup',
-    });
+  console.log();
 
   return (
     <div>
-      <h1>Test 1</h1>
-      <MainButton text="SHOW POPUP" onClick={handleClick} />
+      <h1
+        style={{
+          color: themeParams.text_color,
+        }}
+      >
+        Bienvenue {WebApp?.WebAppUser?.first_name} {WebApp?.WebAppUser?.first_name}
+        Version {WebApp?.version}
+      </h1>
     </div>
   );
 };
